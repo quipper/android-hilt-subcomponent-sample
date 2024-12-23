@@ -28,7 +28,9 @@ class MainActivity : ComponentActivity() {
         NavHost(navController = navController, startDestination = Destination.Home) {
           composable<Destination.Home> {
             HomeScreen(toEdit = { navController.navigate(Destination.Edit("sample")) },
-              toLoggedInScreen = { userId -> startActivity(Intent(context, LoggedInActivity::class.java)) })
+              toLoggedInScreen = { userId ->
+                (application as MyApplication).reset()
+                startActivity(Intent(context, LoggedInActivity::class.java)) })
           }
           composable<Destination.Edit> {
             EditScreen()

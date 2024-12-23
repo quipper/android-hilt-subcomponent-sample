@@ -13,10 +13,14 @@ import androidx.hilt.navigation.compose.hiltViewModel
 @Composable
 fun LoggedInTopScreen(
   viewModel: LoggedInTopViewModel = hiltViewModel(),
+  otherActivity: () -> Unit,
   toLogout: () -> Unit,
 ) {
   Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
     Column(modifier = Modifier.padding(innerPadding)) {
+      Button(onClick = otherActivity) {
+        Text("other activity")
+      }
       Button(onClick = toLogout) {
         viewModel.test()
         Text("logout")

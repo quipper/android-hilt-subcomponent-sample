@@ -25,6 +25,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.LoggedInActivity" />
+        <activity android:name=".ui.LoggedIn2Activity" />
     </application>
 
 </manifest>
