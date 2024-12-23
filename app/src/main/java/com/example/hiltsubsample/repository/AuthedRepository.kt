@@ -4,8 +4,16 @@ import com.example.hiltsubsample.remote.MyApi
 import com.morayl.footprint.withFootprint
 import javax.inject.Inject
 
-class AuthedRepository @Inject constructor(myApi: MyApi) {
+interface AuthedRepository {
+  fun test()
+}
+
+class AuthedRepositoryImpl @Inject constructor(myApi: MyApi) : AuthedRepository {
   init {
     myApi.withFootprint()
+  }
+
+  override fun test() {
+
   }
 }

@@ -2,6 +2,8 @@ package com.example.hiltsubsample.di
 
 import com.example.hiltsubsample.remote.MyApi
 import com.example.hiltsubsample.repository.AuthedRepository
+import com.example.hiltsubsample.repository.AuthedRepositoryImpl
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -10,12 +12,10 @@ import javax.inject.Singleton
 
 @InstallIn(AuthComponent::class)
 @Module
-object AppModule {
+abstract class AppModule {
   @AuthScope
-  @Provides
-  fun provideAuthRepository(myApi: MyApi): AuthedRepository {
-    return AuthedRepository(myApi)
-  }
+  @Binds
+  abstract fun bindsAuthRepository(impl: AuthedRepositoryImpl): AuthedRepository
 }
 
 @InstallIn(SingletonComponent::class)
