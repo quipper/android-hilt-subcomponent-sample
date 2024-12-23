@@ -32,7 +32,9 @@ class LoggedInActivity : ComponentActivity() {
         val context = LocalContext.current
         NavHost(navController = navController, startDestination = LoggedInDestination.LoggedInTop) {
           composable<LoggedInDestination.LoggedInTop> {
-            LoggedInTopScreen(otherActivity = {
+            LoggedInTopScreen(
+              context = context,
+              otherActivity = {
               startActivity(Intent(this@LoggedInActivity, LoggedIn2Activity::class.java))
             }, toLogout = {})
           }
