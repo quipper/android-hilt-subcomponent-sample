@@ -8,12 +8,17 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
-fun HomeScreen(toEdit: () -> Unit) {
+fun HomeScreen(
+  viewModel: HomeViewModel = hiltViewModel(),
+  toEdit: () -> Unit
+) {
   Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
     Column(modifier = Modifier.padding(innerPadding)) {
       Button(onClick = toEdit) {
+        viewModel.test()
         Text("to edit")
       }
     }

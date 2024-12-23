@@ -11,7 +11,9 @@ import com.example.hiltsubsample.navigation.Destination
 import com.example.hiltsubsample.ui.EditScreen
 import com.example.hiltsubsample.ui.HomeScreen
 import com.example.hiltsubsample.ui.theme.HiltSubSampleTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
