@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -13,29 +12,17 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.hiltsubsample.di.authComponentEntryPoint
 
 @Composable
-fun LoggedInTopScreen(
+fun LoggedInSecondScreen(
   context: Context,
-  viewModel: LoggedInTopViewModel = hiltViewModel(creationCallback = { factory: LoggedInTopViewModel.Factory ->
+  viewModel: LoggedInSecondViewModel = hiltViewModel(creationCallback = { factory: LoggedInSecondViewModel.Factory ->
     factory.create(
       context.authComponentEntryPoint().authedRepository()
     )
   }),
-  otherActivity: () -> Unit,
-  toLogout: () -> Unit,
-  toSecond: () -> Unit,
 ) {
   Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
     Column(modifier = Modifier.padding(innerPadding)) {
-      Button(onClick = otherActivity) {
-        Text("other activity")
-      }
-      Button(onClick = toLogout) {
-        viewModel.test()
-        Text("logout")
-      }
-      Button(onClick = toSecond) {
-        Text("to second")
-      }
+      Text(viewModel.getArgs())
     }
   }
 }

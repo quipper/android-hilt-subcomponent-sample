@@ -35,8 +35,14 @@ class LoggedInActivity : ComponentActivity() {
             LoggedInTopScreen(
               context = context,
               otherActivity = {
-              startActivity(Intent(this@LoggedInActivity, LoggedIn2Activity::class.java))
-            }, toLogout = {})
+                startActivity(Intent(this@LoggedInActivity, LoggedIn2Activity::class.java))
+              }, toLogout = {},
+              toSecond = {
+                navController.navigate(LoggedInDestination.LoggedInSecond("content second"))
+              })
+          }
+          composable<LoggedInDestination.LoggedInSecond> {
+            LoggedInSecondScreen(context = context)
           }
         }
       }
