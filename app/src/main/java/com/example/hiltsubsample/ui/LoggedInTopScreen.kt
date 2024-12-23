@@ -11,19 +11,15 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
-fun HomeScreen(
-  viewModel: HomeViewModel = hiltViewModel(),
-  toEdit: () -> Unit,
-  toLoggedInScreen: (String) -> Unit,
+fun LoggedInTopScreen(
+  viewModel: LoggedInTopViewModel = hiltViewModel(),
+  toLogout: () -> Unit,
 ) {
   Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
     Column(modifier = Modifier.padding(innerPadding)) {
-      Button(onClick = toEdit) {
+      Button(onClick = toLogout) {
         viewModel.test()
-        Text("to edit")
-      }
-      Button(onClick = { toLoggedInScreen("userId") }) {
-        Text("Login")
+        Text("logout")
       }
     }
   }
