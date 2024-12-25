@@ -5,6 +5,7 @@ import com.example.hiltsubsample.repository.AuthedRepository
 import com.example.hiltsubsample.repository.AuthedSecondRepository
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.EntryPoints
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
@@ -20,8 +21,9 @@ import dagger.hilt.components.SingletonComponent
 object AuthBridgeModule {
   @AuthBridged
   @Provides
-  fun provideAuthedRepository(@ApplicationContext context: Context): AuthedRepository {
-    return context.authComponentEntryPoint().authedRepository()
+  fun provideAuthedRepository(registry: AuthComponentRegistry): AuthedRepository {
+    // contextの拡張関数を使わなくてもいける。Bridgeの場合は拡張不要かも
+    return EntryPoints.get(registry, AuthComponentEntryPoint::class.java).authedRepository()
   }
 
   @AuthBridged
