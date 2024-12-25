@@ -3,6 +3,8 @@ package com.example.hiltsubsample.di
 import com.example.hiltsubsample.remote.MyApi
 import com.example.hiltsubsample.repository.AuthedRepository
 import com.example.hiltsubsample.repository.AuthedRepositoryImpl
+import com.example.hiltsubsample.repository.AuthedSecondRepository
+import com.example.hiltsubsample.repository.AuthedSecondRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -16,6 +18,10 @@ abstract class AppModule {
   @AuthScope
   @Binds
   abstract fun bindsAuthRepository(impl: AuthedRepositoryImpl): AuthedRepository
+
+  @AuthScope
+  @Binds
+  abstract fun bindsAuthSecondRepository(impl: AuthedSecondRepositoryImpl): AuthedSecondRepository
 }
 
 @InstallIn(SingletonComponent::class)

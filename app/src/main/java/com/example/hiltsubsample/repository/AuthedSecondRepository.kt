@@ -7,13 +7,16 @@ import com.example.hiltsubsample.remote.MyApi
 import com.morayl.footprint.footprint
 import javax.inject.Inject
 
-interface AuthedRepository {
+interface AuthedSecondRepository {
   fun test()
   fun getUserId(): UserId
 }
 
-class AuthedRepositoryImpl @Inject constructor(myApi: MyApi, private val user: User, private val authedMyApi: AuthedMyApi) :
-  AuthedRepository {
+/**
+ * SecondRepositoryのAuthedMyApiは、AuthedRepositoryのAuthedMyApiと同じインスタンスになる
+ */
+class AuthedSecondRepositoryImpl @Inject constructor(myApi: MyApi, private val user: User, private val authedMyApi: AuthedMyApi) :
+  AuthedSecondRepository {
   init {
     footprint(user, myApi, authedMyApi)
   }

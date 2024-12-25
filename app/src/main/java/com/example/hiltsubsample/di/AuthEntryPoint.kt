@@ -2,6 +2,7 @@ package com.example.hiltsubsample.di
 
 import android.content.Context
 import com.example.hiltsubsample.repository.AuthedRepository
+import com.example.hiltsubsample.repository.AuthedSecondRepository
 import dagger.hilt.EntryPoint
 import dagger.hilt.EntryPoints
 import dagger.hilt.InstallIn
@@ -13,6 +14,8 @@ import dagger.hilt.components.SingletonComponent
 interface AuthComponentEntryPoint {
 
   fun authedRepository(): AuthedRepository
+
+  fun authedSecondRepository(): AuthedSecondRepository
 }
 
 @InstallIn(SingletonComponent::class)

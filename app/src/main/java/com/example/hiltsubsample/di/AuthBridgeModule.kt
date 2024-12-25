@@ -2,6 +2,7 @@ package com.example.hiltsubsample.di
 
 import android.content.Context
 import com.example.hiltsubsample.repository.AuthedRepository
+import com.example.hiltsubsample.repository.AuthedSecondRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,5 +22,11 @@ object AuthBridgeModule {
   @Provides
   fun provideAuthedRepository(@ApplicationContext context: Context): AuthedRepository {
     return context.authComponentEntryPoint().authedRepository()
+  }
+
+  @AuthBridged
+  @Provides
+  fun provideAuthedSecondRepository(@ApplicationContext context: Context): AuthedSecondRepository {
+    return context.authComponentEntryPoint().authedSecondRepository()
   }
 }

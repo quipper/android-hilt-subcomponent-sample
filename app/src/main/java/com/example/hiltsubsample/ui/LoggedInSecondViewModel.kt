@@ -7,10 +7,8 @@ import com.example.hiltsubsample.di.AuthBridged
 import com.example.hiltsubsample.navigation.LoggedInDestination
 import com.example.hiltsubsample.remote.MyApi
 import com.example.hiltsubsample.repository.AuthedRepository
+import com.example.hiltsubsample.repository.AuthedSecondRepository
 import com.morayl.footprint.withFootprint
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedFactory
-import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -22,12 +20,14 @@ class LoggedInSecondViewModel @Inject constructor(
   private val savedStateHandle: SavedStateHandle,
   private val myApi: MyApi,
   // AuthBridgedを外すとコンパイルエラー
-  @AuthBridged private val authedRepository: AuthedRepository
+  @AuthBridged private val authedRepository: AuthedRepository,
+  @AuthBridged private val authedSecondRepository: AuthedSecondRepository,
 ) : ViewModel() {
   init {
     savedStateHandle.toRoute<LoggedInDestination.LoggedInSecond>().content.withFootprint()
     myApi.withFootprint()
     authedRepository.withFootprint()
+    authedSecondRepository.withFootprint()
   }
 
   fun getArgs(): String {
