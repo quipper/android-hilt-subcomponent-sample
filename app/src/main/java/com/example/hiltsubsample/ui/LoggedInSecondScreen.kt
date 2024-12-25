@@ -14,11 +14,7 @@ import com.example.hiltsubsample.di.authComponentEntryPoint
 @Composable
 fun LoggedInSecondScreen(
   context: Context,
-  viewModel: LoggedInSecondViewModel = hiltViewModel(creationCallback = { factory: LoggedInSecondViewModel.Factory ->
-    factory.create(
-      context.authComponentEntryPoint().authedRepository()
-    )
-  }),
+  viewModel: LoggedInSecondViewModel = hiltViewModel(),
 ) {
   Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
     Column(modifier = Modifier.padding(innerPadding)) {
