@@ -14,10 +14,14 @@ import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
+/**
+ * Bridgedを使うと、AssistedInjectを使わずInject出来る
+ */
 @HiltViewModel
 class LoggedInSecondViewModel @Inject constructor(
   private val savedStateHandle: SavedStateHandle,
   private val myApi: MyApi,
+  // AuthBridgedを外すとコンパイルエラー
   @AuthBridged private val authedRepository: AuthedRepository
 ) : ViewModel() {
   init {
