@@ -2,6 +2,7 @@ package com.example.hiltsubsample
 
 import android.app.Application
 import com.example.hiltsubsample.di.AuthComponentRegistry
+import com.example.hiltsubsample.model.UserId
 import com.morayl.footprint.accentFootprint
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
@@ -11,8 +12,8 @@ class MyApplication : Application() {
   @Inject
   lateinit var authComponentRegistry: AuthComponentRegistry
 
-  fun reset() {
+  fun reset(userId: UserId) {
     accentFootprint()
-    authComponentRegistry.reset()
+    authComponentRegistry.reset(userId)
   }
 }

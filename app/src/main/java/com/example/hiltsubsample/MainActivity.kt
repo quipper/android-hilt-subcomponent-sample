@@ -9,6 +9,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.hiltsubsample.model.UserId
 import com.example.hiltsubsample.navigation.Destination
 import com.example.hiltsubsample.ui.EditScreen
 import com.example.hiltsubsample.ui.HomeScreen
@@ -29,8 +30,9 @@ class MainActivity : ComponentActivity() {
           composable<Destination.Home> {
             HomeScreen(toEdit = { navController.navigate(Destination.Edit("sample")) },
               toLoggedInScreen = { userId ->
-                (application as MyApplication).reset()
-                startActivity(Intent(context, LoggedInActivity::class.java)) })
+                (application as MyApplication).reset(UserId("userId_test"))
+                startActivity(Intent(context, LoggedInActivity::class.java))
+              })
           }
           composable<Destination.Edit> {
             EditScreen()
