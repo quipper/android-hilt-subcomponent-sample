@@ -23,12 +23,16 @@ object AuthBridgeModule {
   @Provides
   fun provideAuthedRepository(registry: AuthComponentRegistry): AuthedRepository {
     // contextの拡張関数を使わなくてもいける。Bridgeの場合は拡張不要かも
-    return EntryPoints.get(registry, AuthComponentEntryPoint::class.java).authedRepository()
+    return registry.entryPoint().authedRepository()
   }
 
   @AuthBridged
   @Provides
   fun provideAuthedSecondRepository(@ApplicationContext context: Context): AuthedSecondRepository {
     return context.authComponentEntryPoint().authedSecondRepository()
+  }
+
+  private fun AuthComponentRegistry.entryPoint(): AuthComponentEntryPoint {
+    return EntryPoints.get(this, AuthComponentEntryPoint::class.java)
   }
 }
