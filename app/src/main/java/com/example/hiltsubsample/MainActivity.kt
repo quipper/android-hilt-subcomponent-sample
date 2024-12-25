@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
           composable<Destination.Home> {
             HomeScreen(toEdit = { navController.navigate(Destination.Edit("sample")) },
               toLoggedInScreen = { userId ->
-                (application as MyApplication).reset(UserId("userId_test"))
+                (application as MyApplication).reset(UserId(userId))
                 startActivity(Intent(context, LoggedInActivity::class.java))
               })
           }

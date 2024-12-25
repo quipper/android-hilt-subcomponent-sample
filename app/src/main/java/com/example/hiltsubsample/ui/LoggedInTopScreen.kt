@@ -26,11 +26,11 @@ fun LoggedInTopScreen(
 ) {
   Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
     Column(modifier = Modifier.padding(innerPadding)) {
+      Text("Welcome ${viewModel.getUserId().value}")
       Button(onClick = otherActivity) {
         Text("other activity")
       }
       Button(onClick = toLogout) {
-        viewModel.test()
         Text("logout")
       }
       Button(onClick = toSecond) {
