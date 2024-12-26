@@ -47,7 +47,7 @@ class LoggedInActivity : ComponentActivity() {
               })
           }
           composable<LoggedInDestination.LoggedInSecond> {
-            LoggedInSecondScreen(context = context)
+            LoggedInSecondScreen()
           }
         }
       }
