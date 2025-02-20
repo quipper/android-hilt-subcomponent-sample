@@ -4,6 +4,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.navigation.toRoute
 import com.example.hiltsubsample.di.AuthBridged
+import com.example.hiltsubsample.di.FugaClientBridged
+import com.example.hiltsubsample.model.SampleClient
 import com.example.hiltsubsample.navigation.LoggedInDestination
 import com.example.hiltsubsample.remote.MyApi
 import com.example.hiltsubsample.repository.AuthedRepository
@@ -22,8 +24,10 @@ class LoggedInSecondViewModel @Inject constructor(
   // AuthBridgedを外すとコンパイルエラー
   @AuthBridged private val authedRepository: AuthedRepository,
   @AuthBridged private val authedSecondRepository: AuthedSecondRepository,
+  @FugaClientBridged private val client: SampleClient
 ) : ViewModel() {
   init {
+    client.getName().withFootprint()
     savedStateHandle.toRoute<LoggedInDestination.LoggedInSecond>().content.withFootprint()
     myApi.withFootprint()
     authedRepository.withFootprint()

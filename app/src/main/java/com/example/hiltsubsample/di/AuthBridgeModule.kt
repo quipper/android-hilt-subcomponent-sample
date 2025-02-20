@@ -1,6 +1,7 @@
 package com.example.hiltsubsample.di
 
 import android.content.Context
+import com.example.hiltsubsample.model.SampleClient
 import com.example.hiltsubsample.repository.AuthedRepository
 import com.example.hiltsubsample.repository.AuthedSecondRepository
 import dagger.Module
@@ -30,6 +31,18 @@ object AuthBridgeModule {
   @Provides
   fun provideAuthedSecondRepository(@ApplicationContext context: Context): AuthedSecondRepository {
     return context.authComponentEntryPoint().authedSecondRepository()
+  }
+
+  @HogeClientBridged
+  @Provides
+  fun provideHogeCient(registry: AuthComponentRegistry): SampleClient {
+    return registry.entryPoint().hogeClient()
+  }
+
+  @FugaClientBridged
+  @Provides
+  fun provideFugaCient(registry: AuthComponentRegistry): SampleClient {
+    return registry.entryPoint().fugaClient()
   }
 
   private fun AuthComponentRegistry.entryPoint(): AuthComponentEntryPoint {
