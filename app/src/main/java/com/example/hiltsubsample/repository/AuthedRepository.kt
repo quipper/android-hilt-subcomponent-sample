@@ -1,5 +1,7 @@
 package com.example.hiltsubsample.repository
 
+import com.example.hiltsubsample.di.HogeClient
+import com.example.hiltsubsample.model.SampleClient
 import com.example.hiltsubsample.model.User
 import com.example.hiltsubsample.model.UserId
 import com.example.hiltsubsample.remote.AuthedMyApi
@@ -12,10 +14,15 @@ interface AuthedRepository {
   fun getUserId(): UserId
 }
 
-class AuthedRepositoryImpl @Inject constructor(myApi: MyApi, private val user: User, private val authedMyApi: AuthedMyApi) :
+class AuthedRepositoryImpl @Inject constructor(
+  myApi: MyApi,
+  private val user: User,
+  private val authedMyApi: AuthedMyApi,
+  @HogeClient client: SampleClient,
+) :
   AuthedRepository {
   init {
-    footprint(user, myApi, authedMyApi)
+    footprint(client.getName(), user, myApi, authedMyApi)
   }
 
   override fun test() {

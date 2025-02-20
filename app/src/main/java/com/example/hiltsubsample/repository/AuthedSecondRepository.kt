@@ -1,5 +1,7 @@
 package com.example.hiltsubsample.repository
 
+import com.example.hiltsubsample.di.FugaClient
+import com.example.hiltsubsample.model.SampleClient
 import com.example.hiltsubsample.model.User
 import com.example.hiltsubsample.model.UserId
 import com.example.hiltsubsample.remote.AuthedMyApi
@@ -15,10 +17,15 @@ interface AuthedSecondRepository {
 /**
  * SecondRepositoryのAuthedMyApiは、AuthedRepositoryのAuthedMyApiと同じインスタンスになる
  */
-class AuthedSecondRepositoryImpl @Inject constructor(myApi: MyApi, private val user: User, private val authedMyApi: AuthedMyApi) :
+class AuthedSecondRepositoryImpl @Inject constructor(
+  myApi: MyApi,
+  private val user: User,
+  private val authedMyApi: AuthedMyApi,
+  @FugaClient client: SampleClient,
+) :
   AuthedSecondRepository {
   init {
-    footprint(user, myApi, authedMyApi)
+    footprint(client.getName(), user, myApi, authedMyApi)
   }
 
   override fun test() {
