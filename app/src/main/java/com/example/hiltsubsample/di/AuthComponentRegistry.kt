@@ -8,7 +8,7 @@ import javax.inject.Singleton
 
 @Singleton
 class AuthComponentRegistry @Inject constructor(
-  private val authComponentBuilder: AuthComponent.Builder,
+  private val authComponentBuilder: AuthComponentBuilder,
 ) : GeneratedComponentManager<AuthComponent> {
 
   private var authComponent: AuthComponent? = null
