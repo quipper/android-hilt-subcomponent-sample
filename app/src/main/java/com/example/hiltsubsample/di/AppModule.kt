@@ -1,5 +1,6 @@
 package com.example.hiltsubsample.di
 
+import android.app.Application
 import com.example.hiltsubsample.repository.SingletonRepository
 import com.example.hiltsubsample.repository.SingletonRepositoryImpl
 import dagger.Binds
@@ -22,7 +23,7 @@ abstract class AppModule {
 object AppProvidesModule {
   @Provides
   @Singleton
-  fun provideRepository(): SingletonRepository {
-    return SingletonRepositoryImpl()
+  fun provideRepository(application: Application): SingletonRepository {
+    return SingletonRepositoryImpl(application)
   }
 }
