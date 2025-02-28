@@ -28,7 +28,7 @@ interface AuthComponentEntryPoint {
 @InstallIn(SingletonComponent::class)
 @EntryPoint
 interface SingletonComponentEntryPoint {
-  fun authComponentRegistry(): AuthComponentRegistryImpl
+  fun authComponentRegistry(): AuthComponentRegistry
 }
 
 fun Context.authComponentEntryPoint(): AuthComponentEntryPoint {
